@@ -1,0 +1,267 @@
+.fluid-transition {
+  position: relative;
+  height: 330svh;
+  background: #050505;
+  color: #080808;
+}
+
+.fluid-transition-stage {
+  position: sticky;
+  top: 0;
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  height: 100svh;
+  place-items: center;
+  overflow: hidden;
+  isolation: isolate;
+  background: #050505;
+}
+
+.fluid-underlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(255, 255, 255, 0.1), transparent 42%),
+    #050505;
+}
+
+.fluid-transition-title {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.fluid-transition-title-works {
+  color: #f4f3ef;
+}
+
+.fluid-transition-title-catalogues {
+  color: #f4f3ef;
+}
+
+.fluid-eyebrow {
+  margin: 0 0 clamp(16px, 3vh, 30px);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.34em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0.55;
+}
+
+.fluid-transition-title h2 {
+  margin: 0;
+  padding-right: 0.1em;
+  font-size: clamp(88px, 20vw, 320px);
+  font-weight: 550;
+  letter-spacing: -0.105em;
+  line-height: 0.8;
+  white-space: nowrap;
+}
+
+.fluid-transition-title-catalogues h2 {
+  font-size: clamp(44px, 11vw, 164px);
+  letter-spacing: -0.09em;
+}
+
+.fluid-transition-title h2 span {
+  color: #888;
+}
+
+.fluid-fill {
+  --aperture-radius: 0vmax;
+  --aperture-diameter: 0vmax;
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 48% 35%, rgba(255, 255, 255, 0.96), transparent 48%),
+    linear-gradient(145deg, #f8f7f2 4%, #e8e7e2 52%, #d7d7d2 100%);
+  -webkit-mask-image: radial-gradient(
+    circle at center,
+    transparent calc(var(--aperture-radius) - 0.55vmax),
+    #000 var(--aperture-radius)
+  );
+  mask-image: radial-gradient(
+    circle at center,
+    transparent calc(var(--aperture-radius) - 0.55vmax),
+    #000 var(--aperture-radius)
+  );
+  will-change: mask-image;
+}
+
+.fluid-fill::before,
+.fluid-fill::after {
+  position: absolute;
+  inset: -35%;
+  content: "";
+  pointer-events: none;
+}
+
+.fluid-fill::before {
+  background:
+    repeating-radial-gradient(ellipse at 50% 56%, transparent 0 7%, rgba(255, 255, 255, 0.38) 7.1% 7.25%, transparent 7.4% 12%),
+    radial-gradient(ellipse at 28% 42%, rgba(255, 255, 255, 0.58), transparent 34%);
+  opacity: 0.55;
+  animation: fluid-surface-drift 12s ease-in-out infinite alternate;
+}
+
+.fluid-fill::after {
+  inset: -15%;
+  background: linear-gradient(112deg, transparent 38%, rgba(255, 255, 255, 0.55) 48%, transparent 58%);
+  opacity: 0.45;
+  transform: translateX(-35%);
+  animation: fluid-sheen 8s ease-in-out infinite alternate;
+}
+
+.fluid-wave {
+  position: absolute;
+  top: -12vh;
+  left: -50%;
+  width: 200%;
+  height: 16vh;
+  background: #f4f3ef;
+  pointer-events: none;
+}
+
+.fluid-wave-top {
+  clip-path: polygon(0 48%, 5% 35%, 10% 52%, 15% 25%, 20% 45%, 25% 60%, 30% 32%, 35% 20%, 40% 48%, 45% 60%, 50% 30%, 55% 18%, 60% 45%, 65% 58%, 70% 30%, 75% 22%, 80% 50%, 85% 62%, 90% 35%, 95% 25%, 100% 48%, 100% 100%, 0 100%);
+  animation: liquid-wave-travel 6s linear infinite;
+}
+
+.fluid-wave-bottom {
+  top: -11vh;
+  height: 14vh;
+  opacity: 0.36;
+  filter: blur(5px);
+  clip-path: polygon(0 45%, 10% 25%, 20% 55%, 30% 30%, 40% 50%, 50% 20%, 60% 48%, 70% 28%, 80% 55%, 90% 25%, 100% 45%, 100% 100%, 0 100%);
+  animation: liquid-wave-travel-reverse 8s linear infinite;
+}
+
+.fluid-blob {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.42);
+  filter: blur(55px);
+  pointer-events: none;
+}
+
+.fluid-blob-one {
+  top: 10%;
+  left: -15%;
+  width: 45vw;
+  height: 35vw;
+}
+
+.fluid-blob-two {
+  right: -10%;
+  bottom: 5%;
+  width: 40vw;
+  height: 40vw;
+}
+
+.fluid-blob-three {
+  top: 35%;
+  left: 35%;
+  width: 30vw;
+  height: 35vw;
+  background: rgba(225, 225, 225, 0.48);
+}
+
+.fluid-aperture-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--aperture-diameter);
+  height: var(--aperture-diameter);
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+  box-shadow: 0 0 24px rgba(255, 255, 255, 0.42), inset 0 0 18px rgba(0, 0, 0, 0.12);
+  opacity: min(1, calc(var(--aperture-radius) / 8vmax));
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.fluid-transition-hint {
+  position: absolute;
+  right: clamp(24px, 6vw, 88px);
+  bottom: clamp(28px, 5vh, 58px);
+  left: clamp(24px, 6vw, 88px);
+  z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  color: rgba(244, 240, 233, 0.55);
+  font-size: 8px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  mix-blend-mode: difference;
+  pointer-events: none;
+}
+
+@keyframes fluid-surface-drift {
+  from { transform: rotate(-7deg) scale(1); }
+  to { transform: rotate(7deg) scale(1.12); }
+}
+
+@keyframes fluid-sheen {
+  from { transform: translateX(-35%) rotate(-8deg); }
+  to { transform: translateX(35%) rotate(8deg); }
+}
+
+@keyframes liquid-wave-travel {
+  from { transform: translateX(0) translateY(0); }
+  to { transform: translateX(-25%) translateY(4px); }
+}
+
+@keyframes liquid-wave-travel-reverse {
+  from { transform: translateX(-25%) translateY(3px); }
+  to { transform: translateX(0) translateY(-3px); }
+}
+
+@media (max-width: 700px) {
+  .fluid-transition {
+    height: 290svh;
+  }
+
+  .fluid-transition-title h2 {
+    font-size: clamp(78px, 22vw, 180px);
+  }
+
+  .fluid-transition-title-catalogues h2 {
+    font-size: clamp(40px, 12vw, 82px);
+  }
+
+  .fluid-eyebrow {
+    font-size: 7px;
+    letter-spacing: 0.2em;
+  }
+
+  .fluid-transition-hint {
+    right: 22px;
+    left: 22px;
+    font-size: 7px;
+    letter-spacing: 0.14em;
+  }
+
+  .fluid-blob {
+    filter: blur(30px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fluid-fill::before,
+  .fluid-fill::after,
+  .fluid-wave-top,
+  .fluid-wave-bottom {
+    animation: none;
+  }
+}

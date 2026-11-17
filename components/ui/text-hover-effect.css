@@ -1,0 +1,124 @@
+.text-hover-effect {
+  width: clamp(250px, 42vw, 540px);
+  height: clamp(82px, 15vh, 150px);
+  pointer-events: auto;
+}
+
+.text-hover-effect-svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.text-hover-effect-outline,
+.text-hover-effect-glow,
+.text-hover-effect-highlight {
+  fill: transparent;
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 104px;
+  font-weight: 650;
+  letter-spacing: -5px;
+  paint-order: stroke;
+  stroke-linejoin: round;
+  text-transform: uppercase;
+}
+
+.text-hover-effect-outline {
+  stroke: rgba(244, 240, 233, 0.24);
+  stroke-width: 1.2px;
+}
+
+.text-hover-effect-glow,
+.text-hover-effect-highlight {
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.text-hover-effect-glow {
+  stroke-width: 5px;
+}
+
+.text-hover-effect-highlight {
+  stroke-width: 1.5px;
+}
+
+.text-hover-effect-glow.is-visible,
+.text-hover-effect-highlight.is-visible {
+  opacity: 1;
+}
+
+.catalogue-section-label-hover {
+  width: min(300px, 55vw);
+  height: 62px;
+  margin: -8px 0 -8px -8px;
+}
+
+.catalogue-first-hover-hint {
+  position: absolute;
+  top: 37px;
+  left: calc(100% - 22px);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: rgba(244, 240, 233, 0.72);
+  font-size: 8px;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  white-space: nowrap;
+  animation: catalogue-hover-hint-float 1.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.catalogue-first-hover-hint svg {
+  width: 52px;
+  height: 34px;
+  overflow: visible;
+}
+
+@keyframes catalogue-hover-hint-float {
+  0%,
+  100% {
+    transform: translate(0, 0);
+    opacity: 0.62;
+  }
+
+  50% {
+    transform: translate(4px, -3px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 700px) {
+  .text-hover-effect {
+    width: min(78vw, 400px);
+    height: 82px;
+  }
+
+  .text-hover-effect-outline,
+  .text-hover-effect-glow,
+  .text-hover-effect-highlight {
+    font-size: 100px;
+    letter-spacing: -6px;
+  }
+
+  .catalogue-section-label-hover {
+    width: min(250px, 70vw);
+    height: 54px;
+  }
+
+  .catalogue-first-hover-hint {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-hover-effect-glow,
+  .text-hover-effect-highlight {
+    transition: none;
+  }
+
+  .catalogue-first-hover-hint {
+    animation: none;
+  }
+}
